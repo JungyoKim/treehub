@@ -431,7 +431,7 @@
           bauble.style.setProperty("--s", Math.random() * 0.875 + 0.125);
           bauble.style.setProperty("--hue", Math.random() * 360);
 
-          let text = Math.random() >= 0.2 ? "최재령" : Math.random() >= 0.5 ? "1🎅" : "1🎁";
+          let text = Math.random() >= 0.2 ? "최재령" : Math.random() >= 0.5 ? "🎅" : "🎁";
           bauble.textContent = text;
 
           if (text === "최재령") {
