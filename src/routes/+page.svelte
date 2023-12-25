@@ -409,66 +409,61 @@
   <li></li>
 </ul>
 
-
 <script>
   import { onMount } from 'svelte';
 
   onMount(() => {
-    const baubles = document.querySelectorAll("li");
-    const lights = document.querySelectorAll("li:nth-child(odd)");
-    const maxX = 35;
-    const maxY = 35;
-    const baublesLength = baubles.length;
+      const baubles = document.querySelectorAll("li");
+      const maxX = 35;
+      const maxY = 35;
+      const baublesLength = baubles.length;
 
-    baubles.forEach((bauble, i) => {
-      const y = Math.pow(i / baublesLength, 0.5) * maxY * 2 - maxY;
-      const x =
-        Math.pow((maxX * i) / baublesLength, 0.5) *
-        5.5 *
-        Math.random() *
-        (i % 2 === 0 ? 1 : -1);
-      const r = Math.random();
-      const n = Math.random();
+      baubles.forEach((bauble, i) => {
+          const y = Math.pow(i / baublesLength, 0.5) * maxY * 2 - maxY;
+          const x = Math.pow((maxX * i) / baublesLength, 0.5) * 5.5 * Math.random() * (i % 2 === 0 ? 1 : -1);
+          const r = Math.random();
+          const n = Math.random();
 
-      bauble.style.setProperty("--x", `${x}vmin`);
-      bauble.style.setProperty("--y", `${y}vmin`);
-      bauble.style.setProperty("--r", `${r}turn`);
-      bauble.style.setProperty("--sign", n > 0.5 ? -1 : 1);
-      bauble.style.setProperty("--s", Math.random() * 0.875 + 0.125);
-      bauble.style.setProperty("--hue", Math.random() * 360);
+          bauble.style.setProperty("--x", `${x}vmin`);
+          bauble.style.setProperty("--y", `${y}vmin`);
+          bauble.style.setProperty("--r", `${r}turn`);
+          bauble.style.setProperty("--sign", n > 0.5 ? -1 : 1);
+          bauble.style.setProperty("--s", Math.random() * 0.875 + 0.125);
+          bauble.style.setProperty("--hue", Math.random() * 360);
 
-      bauble.textContent =
-        Math.random() >= 0.2 ? "최재령" : Math.random() >= 0.5 ? "1🎅" : "0🎁";
+          let text = Math.random() >= 0.2 ? "최재령" : Math.random() >= 0.5 ? "1🎅" : "1🎁";
+          bauble.textContent = text;
 
-      if (i % 2 === 0) {
-        bauble.animate(
-          { opacity: [1, 1, 0] },
-          {
-            duration: 2000 + Math.random() * 3000,
-            iterations: Infinity,
-            direction: "alternate",
-            delay: Math.random() * -16000,
-            easing: "ease-in"
+          if (text === "최재령") {
+              bauble.classList.add("blink");
           }
-        );
-      }
-      const animation = bauble.animate(
-        { transform: ["rotateX(1turn) rotateY(2turn)"] },
-        {
-          duration: 7000 + Math.random() * 13000,
-          iterations: Infinity,
-          direction: "alternate",
-          delay: Math.random() * -16000,
-          easing: "ease-in",
-          composite: "add"
-        }
-      );
-      if (
-        i % 2 === 1 ||
-        !window.matchMedia?.("(prefers-reduced-motion: no-preference)")
-      ) {
-        animation.pause();
-      }
-    });
+
+          if (i % 2 === 0) {
+              bauble.animate(
+                  { opacity: [1, 1, 0] },
+                  {
+                      duration: 2000 + Math.random() * 3000,
+                      iterations: Infinity,
+                      direction: "alternate",
+                      delay: Math.random() * -16000,
+                      easing: "ease-in"
+                  }
+              );
+          }
+          const animation = bauble.animate(
+              { transform: ["rotateX(1turn) rotateY(2turn)"] },
+              {
+                  duration: 7000 + Math.random() * 13000,
+                  iterations: Infinity,
+                  direction: "alternate",
+                  delay: Math.random() * -16000,
+                  easing: "ease-in",
+                  composite: "add"
+              }
+          );
+          if (i % 2 === 1 || !window.matchMedia?.("(prefers-reduced-motion: no-preference)")) {
+              animation.pause();
+          }
+      });
   });
 </script>
