@@ -438,7 +438,7 @@
       bauble.style.setProperty("--hue", Math.random() * 360);
 
       bauble.textContent =
-        Math.random() >= 0.2 ? "최재령" : Math.random() >= 0.5 ? "1🎅" : "1🎁";
+        Math.random() >= 0.2 ? "최재령" : Math.random() >= 0.5 ? "1🎅" : "0🎁";
 
       if (i % 2 === 0) {
         bauble.animate(
